@@ -1,2 +1,2 @@
 # trivia
-A simple trivia
+A simple trivia under construction.
