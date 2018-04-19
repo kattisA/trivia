@@ -16,25 +16,53 @@ namespace Trivia
 			
 		}
 
-		public void playAdditionTrivia() {
+		public Boolean playTrivia(int type) {
 			int number1 = GenerateRandom();
 			int number2 = GenerateRandom();
+			var QA = GenerateQuestion(number1, number2, type);
+			Boolean success = false; 
 
-			Console.WriteLine(AdditionQuestion(number1, number2));
+
+			if (type == 1) {
+				Console.WriteLine(QA.question);
+			}
+			if (type == 2){
+				Console.WriteLine(QA.question);
+			}
+			
 			string answerInput = Console.ReadLine();
 			int answer = Convert.ToInt32(answerInput);
-			int correct = number1 + number2;
 
-			if (answer == correct)
+			if (answer == QA.answer)
 			{
 				Console.WriteLine("Well done");
+				success = true;
+				
 			}
 			else { Console.WriteLine("Sorry, better luck next time!"); }
+
+			return success;
 		}
 
-		public string AdditionQuestion(int num1, int num2) {
-			string question = "What is " + num1 + " + " + num2 + " ?";
-			return question;
+		public void addToScore(Player player, int resultAdd)
+		{
+			player.Scores.Add(resultAdd);
+		}
+
+		public (string question, int answer) GenerateQuestion(int num1, int num2, int type) {
+			int correct = 0;
+			string question = ""; 
+			if (type == 1)
+			{
+				question = "What is " + num1 + " + " + num2 + " ?";
+				correct = num1 + num2;
+			}
+			if (type == 2)
+			{
+				question = "What is " + num1 + " - " + num2 + " ?";
+				correct = num1 - num2;
+			}
+			return (question, correct);
 		}
     }
 }
