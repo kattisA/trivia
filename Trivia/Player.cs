@@ -6,13 +6,16 @@ namespace Trivia
 {
     class Player
     {
-			 
+		private List<int> scores = new List<int>();
 		public Player(string name) {
 			Name = name;
-			List<int> Scores = new List<int>();
 		}
 
 		public string Name { get; set; }
-		public List<int> Scores { get; set; }
+		
+
+		public void addToScore(int result) {
+			scores.Add(result); 
+		}
 	}
 }

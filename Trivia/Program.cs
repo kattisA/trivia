@@ -2,16 +2,15 @@
 
 namespace Trivia
 {
-    class Program
-    {
+	class Program
+	{
 		public static int quizLength = 3;
+	
+		static Boolean success = false;
 		static void Main(string[] args)
-        {
+		{
 			Logic logic = new Logic();
-			int userInput = 0;
-			int type = 0;
-			
-			Boolean success = false; 
+			int userInput = 0; 
 			Console.WriteLine("Welcome to Trivia!");
 			Console.WriteLine("What's your name?");
 			string name = Console.ReadLine();
@@ -20,6 +19,7 @@ namespace Trivia
 			Player player = new Player(name);
 			Console.WriteLine("Hello " + player.Name);
 
+
 			do
 			{
 				userInput = Menu();
@@ -27,29 +27,12 @@ namespace Trivia
 				{
 					case 1:
 						Console.WriteLine("Case 1: You have chosen addition quiz!");
-						type = 1;
-						int i = 0;
-						int resultAdd = 0;
-						while (i < quizLength)
-						{
-							success = logic.playTrivia(type);
-							i++;
-							if (success) {  resultAdd++;  }
-						}
-						logic.addToScore(player, resultAdd);
-						Console.WriteLine(resultAdd);
+						int result = makeLoop(userInput, logic);
+						logic.addToScore(player, result);
+						Console.WriteLine(result);
 						break;
 					case 2:
 						Console.WriteLine("Case 2: You have chosen subtraction quiz!");
-						type = 2;
-						int j = 0;
-						int resultSub = 0; 
-						while (j < quizLength)	{
-							success = logic.playTrivia(type);
-							j++;
-							if (success) { resultSub++; }
-						}
-						Console.WriteLine(resultSub);
 						break;
 					case 3:
 						Console.WriteLine("Case 3");
@@ -74,6 +57,19 @@ namespace Trivia
 			Console.WriteLine("5. Exit");
 			var result = Console.ReadLine();
 			return Convert.ToInt32(result);
+		}
+
+		static public int makeLoop(int type, Logic logic) {
+			int i = 0;
+			int result = 0;
+			while (i < quizLength)
+			{
+				success = logic.playTrivia(type);
+				i++;
+				if (success) { result++; }
+			}
+			return result;
+		
 		}
 	}
 }

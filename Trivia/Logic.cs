@@ -46,7 +46,7 @@ namespace Trivia
 
 		public void addToScore(Player player, int resultAdd)
 		{
-			player.Scores.Add(resultAdd);
+			player.addToScore(resultAdd);
 		}
 
 		public (string question, int answer) GenerateQuestion(int num1, int num2, int type) {
@@ -64,5 +64,6 @@ namespace Trivia
 			}
 			return (question, correct);
 		}
+
     }
 }
