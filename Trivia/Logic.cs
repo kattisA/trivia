@@ -44,9 +44,14 @@ namespace Trivia
 			return success;
 		}
 
-		public void addToScore(Player player, int resultAdd)
+		public void AddToScore(Player player, int result, int type)
 		{
-			player.addToScore(resultAdd);
+			string stringType = "";
+			if (type == 1){
+				stringType = "Addition";
+			}
+			else { stringType = "Subtraction"; }
+			player.AddToScore(result, stringType);
 		}
 
 		public (string question, int answer) GenerateQuestion(int num1, int num2, int type) {

@@ -28,15 +28,15 @@ namespace Trivia
 				{
 					case 1:
 						Console.WriteLine("Case 1: You have chosen addition quiz!");
-						int result = MakeLoop(userInput, logic);
-						logic.addToScore(player, result);
-						Console.WriteLine(result);
+						MakeLoop(userInput, player);
 						break;
 					case 2:
 						Console.WriteLine("Case 2: You have chosen subtraction quiz!");
+						MakeLoop(userInput, player);
 						break;
 					case 3:
-						Console.WriteLine("Case 3");
+						Console.WriteLine("This is " + player.Name + " scoreboard:");
+						player.PrintScores(quizLength); 
 						break;
 					case 4:
 						Console.WriteLine("Case 4");
@@ -52,15 +52,15 @@ namespace Trivia
 		public int Menu()
 		{
 			Console.WriteLine("1. Addition");
-			Console.WriteLine("2. Subtraction ");
-			Console.WriteLine("3. ");
+			Console.WriteLine("2. Subtraction");
+			Console.WriteLine("3. Check your score");
 			Console.WriteLine("4. ");
 			Console.WriteLine("5. Exit");
 			var result = Console.ReadLine();
 			return Convert.ToInt32(result);
 		}
 
-		public int MakeLoop(int type, Logic logic)
+		public void MakeLoop(int type, Player player)
 		{
 			int i = 0;
 			int result = 0;
@@ -70,7 +70,8 @@ namespace Trivia
 				i++;
 				if (success) { result++; }
 			}
-			return result;
+			logic.AddToScore(player, result, type);
+			//Console.WriteLine(result);
 
 		}
 	}
