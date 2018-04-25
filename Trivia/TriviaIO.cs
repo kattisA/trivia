@@ -35,11 +35,12 @@ namespace Trivia
 						MakeLoop(userInput, player);
 						break;
 					case 3:
-						Console.WriteLine("This is " + player.Name + " scoreboard:");
-						player.PrintScores(quizLength); 
+						Console.WriteLine("Case #: Mixed quiz!");
+						MakeLoop(userInput, player);
 						break;
 					case 4:
-						Console.WriteLine("Case 4");
+						Console.WriteLine("This is " + player.Name + " scoreboard:");
+						player.PrintScores(quizLength);
 						break;
 					default:
 						Console.WriteLine("Please enter a correct choice");
@@ -53,8 +54,8 @@ namespace Trivia
 		{
 			Console.WriteLine("1. Addition");
 			Console.WriteLine("2. Subtraction");
-			Console.WriteLine("3. Check your score");
-			Console.WriteLine("4. ");
+			Console.WriteLine("3. Mixed");
+			Console.WriteLine("4. Check your score");
 			Console.WriteLine("5. Exit");
 			var result = Console.ReadLine();
 			return Convert.ToInt32(result);
