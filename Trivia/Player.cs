@@ -16,7 +16,7 @@ namespace Trivia
 		
 
 		public void AddToScore(int result, string type) {
-			scores.Add(new Score(result, type)); 
+			scores.Add(new Score(result, type, Name)); 
 		}
 
 		public void PrintScores(int quizLength) {

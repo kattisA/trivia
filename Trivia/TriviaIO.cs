@@ -67,7 +67,7 @@ namespace Trivia
 			int result = 0;
 			while (i < quizLength)
 			{
-				success = logic.playTrivia(type);
+				success = logic.PlayTrivia(type);
 				i++;
 				if (success) { result++; }
 			}

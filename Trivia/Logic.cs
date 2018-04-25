@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace Trivia
@@ -9,7 +10,10 @@ namespace Trivia
 		public Logic() { }
 		public const int MAX_NUM = 10;
 		public const int MIN_NUM = 1;
-		public int GenerateRandom(int min, int max) {
+        //The List to write to when reading the file
+        List<Score> listOfPreviousScores = new List<Score>();
+
+        public int GenerateRandom(int min, int max) {
 
 			Random random = new Random();
 			int rand_number = random.Next(min, max);
@@ -17,7 +21,7 @@ namespace Trivia
 			
 		}
 
-		public Boolean playTrivia(int type) {
+		public Boolean PlayTrivia(int type) {
 			int number1 = GenerateRandom(MIN_NUM, MAX_NUM +1);
 			int number2 = GenerateRandom(MIN_NUM, MAX_NUM + 1);
 			var QA = GenerateQuestion(number1, number2, type);
@@ -70,6 +74,25 @@ namespace Trivia
 			}
 			return (question, correct);
 		}
+        // There is Object Stream Reader?
+        public void ReadFile() {
+            using (StreamReader reader = new StreamReader("previous_scores.txt"))
+            {
+                string line;
+                while ((line = reader.ReadLine()) != null)
+                {
+                    // Do something with the line.
+                    string[] parts = line.Split(',');
+                }
+            }
+        }
+
+        public void WriteFile() {
+            using (var writer = new StreamWriter("previous_scores.txt"))
+            {
+                writer.WriteLine("Hello there"); 
+            }
+        }
 
     }
 }
