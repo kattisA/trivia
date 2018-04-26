@@ -6,10 +6,6 @@ namespace Trivia
 {
     class TriviaIO
     {
-		public static int quizLength = 3;
-		static Boolean success = false;
-		Logic logic = new Logic();
-
 		public void Start() {
 			
 			int userInput = 0;
@@ -17,9 +13,9 @@ namespace Trivia
 			Console.WriteLine("Welcome to Trivia!");
 			Console.WriteLine("What's your name?");
 			string name = Console.ReadLine();
-
-			Player player = new Player(name);
-			Console.WriteLine("Hello " + player.Name);
+			Logic logic = new Logic(new Player(name));
+			Console.WriteLine("Hello " + name);
+			logic.ReadFile();
 
 			do
 			{
@@ -28,26 +24,30 @@ namespace Trivia
 				{
 					case 1:
 						Console.WriteLine("Case 1: You have chosen addition quiz!");
-						MakeLoop(userInput, player);
+						logic.Play(userInput);
 						break;
 					case 2:
 						Console.WriteLine("Case 2: You have chosen subtraction quiz!");
-						MakeLoop(userInput, player);
+						logic.Play(userInput);
 						break;
 					case 3:
-						Console.WriteLine("Case #: Mixed quiz!");
-						MakeLoop(userInput, player);
+						Console.WriteLine("Case 3: Mixed quiz!");
+						logic.Play(userInput);
 						break;
 					case 4:
-						Console.WriteLine("This is " + player.Name + " scoreboard:");
-						player.PrintScores(quizLength);
+						Console.WriteLine("This is " + name + " scoreboard:");
+						logic.PrintScores();
 						break;
+					case 5:
+						Console.WriteLine("Bye, bye " + name);
+						Console.ReadKey();
+						logic.WriteFile();
+						break; 
 					default:
 						Console.WriteLine("Please enter a correct choice");
 						break;
 				}
-			} while (userInput != 5);
-
+			} while (userInput != 5);			
 		}
 
 		public int Menu()
@@ -61,19 +61,6 @@ namespace Trivia
 			return Convert.ToInt32(result);
 		}
 
-		public void MakeLoop(int type, Player player)
-		{
-			int i = 0;
-			int result = 0;
-			while (i < quizLength)
-			{
-				success = logic.PlayTrivia(type);
-				i++;
-				if (success) { result++; }
-			}
-			logic.AddToScore(player, result, type);
-			//Console.WriteLine(result);
-
-		}
+		
 	}
 }
