@@ -36,18 +36,21 @@ namespace Trivia
 						break;
 					case 4:
 						Console.WriteLine("This is " + name + " scoreboard:");
-						logic.PrintScores();
+						logic.PrintPlayerScores();
 						break;
 					case 5:
+						logic.PrintAllScores();
+						break;
+					case 6:
 						Console.WriteLine("Bye, bye " + name);
 						Console.ReadKey();
 						logic.WriteFile();
-						break; 
+						break;
 					default:
 						Console.WriteLine("Please enter a correct choice");
 						break;
 				}
-			} while (userInput != 5);			
+			} while (userInput != 6);			
 		}
 
 		public int Menu()
@@ -56,11 +59,10 @@ namespace Trivia
 			Console.WriteLine("2. Subtraction");
 			Console.WriteLine("3. Mixed");
 			Console.WriteLine("4. Check your score");
-			Console.WriteLine("5. Exit");
+			Console.WriteLine("5. Check all scores");
+			Console.WriteLine("6. Exit");
 			var result = Console.ReadLine();
 			return Convert.ToInt32(result);
-		}
-
-		
+		}	
 	}
 }

@@ -77,30 +77,41 @@ namespace Trivia
 
 		public void AddToScore( int result, int type)
 		{
+			DateTime dateTime = DateTime.Now;
+			string timeStamp =String.Format("{0:g}", dateTime);
 			string stringType = "";
 			if (type == 1){
 				stringType = "Addition";
 			}
 			if (type == 2) { stringType = "Subtraction"; }
 			else { stringType = "Mixed"; }
-			Score score = new Score(result, stringType, Player.Name);
+			Score score = new Score(result, stringType, Player.Name, timeStamp);
 			listOfScores.Add(score);
 		}
+		public void PrintAllScores() {
+			foreach (Score score in listOfScores) {
+				Console.WriteLine("Name: " + score.Name + " " + MakeStringScore(score)); 
+			}
+		}
 
-		public void PrintScores()
-		{
-			Boolean playerFound = false; 
-			foreach (Score score in listOfScores)
-			{
+		public void PrintPlayerScores() {
+			Boolean playerFound = false;
+			foreach (Score score in listOfScores) {
 				if (score.Name.Equals(Player.Name))
 				{
-					playerFound = true; 
-					double percent = ((double)score.Correct / (double)quizLength) * BASE;
-					int percentInt = Convert.ToInt32(percent);
-					Console.WriteLine("Score: " + percentInt + " % " + "Type: " + score.Type);
+					playerFound = true;
+					Console.WriteLine( MakeStringScore(score)); 
 				}
 			}
 			if (!playerFound) { Console.WriteLine("Player " + Player.Name + " was not found"); }
+		}
+
+		private string MakeStringScore(Score score)
+		{
+			double percent = ((double)score.Correct / (double)quizLength) * BASE;
+			int percentInt = Convert.ToInt32(percent);
+			string makeString = "Score: " + percentInt + " % " + "Type: " + score.Type + " Time: " + score.TimeStamp;
+			return makeString; 
 		}
 
 		// There is Object Stream Reader?
@@ -113,7 +124,7 @@ namespace Trivia
                     // Do something with the line.
                     string[] parts = line.Split(';');
 					int correct = Convert.ToInt32(parts[0]);
-					listOfScores.Add(new Score(correct, parts[1], parts[2]));
+					listOfScores.Add(new Score(correct, parts[1], parts[2], parts[3]));
                 }
             }
         }
@@ -123,7 +134,7 @@ namespace Trivia
             {
 				foreach (Score score in listOfScores)
 				{
-					writer.WriteLine(score.Correct + ";" + score.Type + ";" + score.Name + ";");
+					writer.WriteLine(score.Correct + ";" + score.Type + ";" + score.Name + ";" + score.TimeStamp + ";");
 				}
             }
         }

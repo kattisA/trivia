@@ -7,15 +7,18 @@ namespace Trivia
     class Score
     {
 
-		public Score(int correct, String type, String name)
+		public Score(int correct, String type, String name, String date)
 		{
-            Name = name;
-            Correct = correct;
+			Correct = correct;
 			Type = type;
+            Name = name;
+			TimeStamp = date;
+
 		}
 
-        public string Name { get; set; }
         public int Correct { get; private set; }
 		public String Type { get; private set; }
+		public string Name { get; set; }
+		public string TimeStamp { get; set; }
 	}
 }
