@@ -40,7 +40,7 @@ namespace Trivia
 			
 		}
 
-		public Boolean GenerateQuestion(int type) {
+		private Boolean GenerateQuestion(int type) {
 			int number1 = GenerateRandom(MIN_NUM, MAX_NUM +1);
 			int number2 = GenerateRandom(MIN_NUM, MAX_NUM + 1);
 			Boolean success = false;
@@ -75,7 +75,7 @@ namespace Trivia
 			return success;
 		}
 
-		public void AddToScore( int result, int type)
+		private void AddToScore( int result, int type)
 		{
 			DateTime dateTime = DateTime.Now;
 			string timeStamp =String.Format("{0:g}", dateTime);

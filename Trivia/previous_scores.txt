@@ -1,0 +1,4 @@
+3;Mixed;Magnus;2018-04-26 21:08;
+2;Subtraction;Magnus;2018-04-26 21:08;
+3;Mixed;Kattis;2018-04-26 21:08;
+2;Mixed;Kattis;2018-04-26 21:09;
