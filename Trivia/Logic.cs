@@ -125,7 +125,6 @@ namespace Trivia
 				{
 					writer.WriteLine(score.Correct + ";" + score.Type + ";" + score.Name + ";");
 				}
-                 
             }
         }
 
