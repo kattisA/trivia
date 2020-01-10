@@ -11,7 +11,7 @@ namespace Trivia
 			int userInput = 0;
 
 			Console.WriteLine("Welcome to Trivia!");
-			Console.WriteLine("What's your name?");
+			Console.WriteLine("Now, what's your name?");
 			string name = Console.ReadLine();
 			Logic logic = new Logic(new Player(name));
 			Console.WriteLine("Hello " + name);
